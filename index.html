@@ -3,81 +3,22 @@
 <html>
     <head>
         <title>
-            Rock Paper Scissors
+            Rock, Paper, Scissors
         </title>
+        <link rel="stylesheet" type = "text/css" href="styles.css">
     </head>
     <body>
-        <h1>Open the console and type game() to play RPS</h1>
-        <script>
-            function computerPlay(){
-                let num = Math.floor(Math.random() * 3);
-                switch (num){
-                    case 0 : return "rock";
-                    break;
-                    case 1 : return "paper";
-                    break;
-                    default: return "scissors";
-                }
-            }
-            function playGame(computerChoice, playerChoice){
-                let playerChoiceL = playerChoice.toLowerCase();
-                if(computerChoice == playerChoiceL){
-                    return "draw";
-                }
-                switch (playerChoiceL) {
-                    case "rock" : 
-                        if(computerChoice == "scissors") {
-                            return "player wins, rock beats scissors";
-                        }
-                        else {
-                            return "computer wins, paper beats rock";
-                        }
-                    break;
-                    case "paper" :
-                        if(computerChoice == "rock") {
-                            return "player wins, paper beats rock";
-                        } else {
-                            return "computer wins, scissors beats paper";
-                        }
-                    break;
-                    case "scissors":
-                        if(computerChoice == "paper") {
-                            return "player wins, scissors beats paper";
-                        }
-                        else {
-                            return "computer wins, rock beats scissors";
-                        }
-                    break;
-                    default: return "game invalid";
-                }    
-            }
-            function game(){
-                let numGames = prompt("First to how many wins?: ");
-                while (numGames <= 0 || isNaN(numGames)) {
-                    numGames = prompt("Please enter a positive number: ");
-                }
-                let playerWins = 0;
-                let computerWins = 0;
-                let playerChoice = "";
-                while(playerWins < numGames && computerWins < numGames) {
-                    playerChoice = prompt("rock, paper or scissors?: ");
-                    let gameMessage = playGame(computerPlay(), playerChoice);
-                    console.log(gameMessage);
-                    if(gameMessage.includes("player")) {
-                        playerWins++;
-                    } else if (gameMessage.includes("computer")) {
-                        computerWins++;
-                    }
-                    console.log("Score:\n" + "Player: " + playerWins + 
-                        " | Computer: " + computerWins);
-                }
-                if(playerWins > computerWins){
-                    console.log("You win!");
-                }
-                else {
-                    console.log("You lose, try again?");
-                }
-            }
-        </script>
+        <div id = "main">
+            <button class = "start">Play Rock, Paper, Scissors!</button>
+            <button class = "select hidden" id = "rock"><img src = "images/rock.png" class = "icon hidden"></button> 
+            <button class = "select hidden" id = "paper"><img src = "images/paper.png" class = "icon hidden"></button>
+            <button class = "select hidden" id = "scissors" ><img src = "images/scissors.png" class = "icon hidden"></button>
+            <div id = "scoreboard" class = "hidden">
+                <p id = "gamemessage">game message</p>
+                <p id = "score">Player: X | CPU: X</p>
+            </div>
+            
+        </div>
+        <script src = "script.js"></script>
     </body>
 </html>
